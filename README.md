@@ -1,2 +1,2 @@
-# Gaming-website-with-AI
+# Gaming-websites-with-AI
 Developing a gaming websites by using codexAI
