@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sudoku Puzzle Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="game-panel" aria-labelledby="app-title">
+      <div class="topbar">
+        <div>
+          <p class="eyebrow">Sudoku Lab</p>
+          <h1 id="app-title">Puzzle Generator</h1>
+        </div>
+        <div class="stat-stack">
+          <div class="stat">
+            <span>Time</span>
+            <strong id="timer">00:00</strong>
+          </div>
+          <div class="stat">
+            <span>Mistakes</span>
+            <strong><span id="mistakes">0</span>/3</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls" aria-label="Game controls">
+        <label class="select-wrap">
+          <span>Difficulty</span>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium" selected>Medium</option>
+            <option value="hard">Hard</option>
+            <option value="expert">Expert</option>
+          </select>
+        </label>
+        <button id="new-game" class="primary-btn" type="button">New Puzzle</button>
+        <button id="check-board" type="button">Check</button>
+        <button id="hint" type="button">Hint</button>
+        <button id="solve" type="button">Solve</button>
+      </div>
+
+      <div id="status" class="status" role="status">Choose a cell and fill the grid.</div>
+
+      <div class="board-wrap">
+        <div id="board" class="board" aria-label="Sudoku board"></div>
+      </div>
+
+      <div class="keypad" aria-label="Number keypad">
+        <button type="button" data-number="1">1</button>
+        <button type="button" data-number="2">2</button>
+        <button type="button" data-number="3">3</button>
+        <button type="button" data-number="4">4</button>
+        <button type="button" data-number="5">5</button>
+        <button type="button" data-number="6">6</button>
+        <button type="button" data-number="7">7</button>
+        <button type="button" data-number="8">8</button>
+        <button type="button" data-number="9">9</button>
+      </div>
+
+      <div class="utility-row">
+        <button id="notes" type="button" aria-pressed="false">Notes</button>
+        <button id="erase" type="button">Erase</button>
+        <button id="restart" type="button">Restart</button>
+      </div>
+    </section>
+
+    <aside class="side-panel" aria-label="Game details">
+      <div class="summary">
+        <p class="eyebrow">Current Puzzle</p>
+        <h2 id="difficulty-title">Medium</h2>
+        <p id="givens">Generating a fresh grid...</p>
+      </div>
+
+      <div class="rules">
+        <h3>Goal</h3>
+        <p>Fill each row, column, and 3x3 box with the digits 1 through 9.</p>
+      </div>
+
+      <div class="rules">
+        <h3>Shortcuts</h3>
+        <p>Use number keys to enter values, Backspace to erase, and N to toggle notes.</p>
+      </div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

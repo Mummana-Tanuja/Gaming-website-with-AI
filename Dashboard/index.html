@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sales Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="dashboard">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Sales Analytics</p>
+        <h1>Sales Performance Dashboard</h1>
+      </div>
+      <div class="date-chip">FY 2026</div>
+    </header>
+
+    <section class="metrics" aria-label="Sales summary">
+      <article class="metric-card">
+        <span>Total Revenue</span>
+        <strong>$1.28M</strong>
+        <small class="positive">+18.4% vs last year</small>
+      </article>
+      <article class="metric-card">
+        <span>Total Orders</span>
+        <strong>24,860</strong>
+        <small class="positive">+11.2% growth</small>
+      </article>
+      <article class="metric-card">
+        <span>Average Order</span>
+        <strong>$51.48</strong>
+        <small class="positive">+6.7% improvement</small>
+      </article>
+      <article class="metric-card">
+        <span>Return Rate</span>
+        <strong>3.8%</strong>
+        <small class="warning">-0.9% better</small>
+      </article>
+    </section>
+
+    <section class="chart-grid" aria-label="Sales charts">
+      <article class="chart-card wide">
+        <div class="chart-title">
+          <div>
+            <h2>Monthly Revenue</h2>
+            <p>Revenue trend across the year</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="revenueChart"></canvas>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-title">
+          <div>
+            <h2>Sales by Category</h2>
+            <p>Top product groups</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="categoryChart"></canvas>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-title">
+          <div>
+            <h2>Regional Share</h2>
+            <p>Contribution by region</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="regionChart"></canvas>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-title">
+          <div>
+            <h2>Sales Channels</h2>
+            <p>Online and offline sources</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="channelChart"></canvas>
+        </div>
+      </article>
+
+      <article class="chart-card">
+        <div class="chart-title">
+          <div>
+            <h2>Quarterly Profit</h2>
+            <p>Profit earned each quarter</p>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="profitChart"></canvas>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InsightDesk Analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-mark">ID</span>
+        <div>
+          <strong>InsightDesk</strong>
+          <small>Analytics Studio</small>
+        </div>
+      </div>
+
+      <nav class="nav-list" aria-label="Main sections">
+        <a href="#dashboard" class="active">Dashboard</a>
+        <a href="#data">Data</a>
+        <a href="#charts">Charts</a>
+        <a href="#forecast">Forecast</a>
+      </nav>
+
+      <section class="sidebar-panel">
+        <span class="eyebrow">10 Features</span>
+        <ol>
+          <li>CSV upload</li>
+          <li>KPI cards</li>
+          <li>Date filters</li>
+          <li>Category filters</li>
+          <li>Searchable table</li>
+          <li>Sort columns</li>
+          <li>Charts</li>
+          <li>Pivot summary</li>
+          <li>Anomaly detection</li>
+          <li>Forecast and export</li>
+        </ol>
+      </section>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">Data Analytics Tool</span>
+          <h1>Explore sales data in one focused workspace</h1>
+        </div>
+        <div class="actions">
+          <label class="file-button">
+            <input id="csvInput" type="file" accept=".csv,text/csv">
+            Upload CSV
+          </label>
+          <button id="resetData" type="button">Use Sample</button>
+          <button id="exportCsv" type="button" class="primary">Export View</button>
+        </div>
+      </header>
+
+      <section id="dashboard" class="toolbar">
+        <div class="control-group">
+          <label for="startDate">Start</label>
+          <input id="startDate" type="date">
+        </div>
+        <div class="control-group">
+          <label for="endDate">End</label>
+          <input id="endDate" type="date">
+        </div>
+        <div class="control-group">
+          <label for="categoryFilter">Category</label>
+          <select id="categoryFilter">
+            <option value="all">All categories</option>
+          </select>
+        </div>
+        <div class="control-group grow">
+          <label for="searchInput">Search</label>
+          <input id="searchInput" type="search" placeholder="Find region, product, or category">
+        </div>
+      </section>
+
+      <section class="kpi-grid" aria-label="Key metrics">
+        <article class="metric-card">
+          <span>Total Revenue</span>
+          <strong id="totalRevenue">$0</strong>
+          <small id="revenueDelta">0% vs previous period</small>
+        </article>
+        <article class="metric-card">
+          <span>Total Profit</span>
+          <strong id="totalProfit">$0</strong>
+          <small id="marginValue">0% margin</small>
+        </article>
+        <article class="metric-card">
+          <span>Units Sold</span>
+          <strong id="totalUnits">0</strong>
+          <small id="avgOrderValue">$0 average order</small>
+        </article>
+        <article class="metric-card warning">
+          <span>Anomalies</span>
+          <strong id="anomalyCount">0</strong>
+          <small>High or low revenue outliers</small>
+        </article>
+      </section>
+
+      <section id="charts" class="analytics-grid">
+        <article class="panel wide">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Trend</span>
+              <h2>Revenue Over Time</h2>
+            </div>
+            <select id="trendMetric" aria-label="Trend metric">
+              <option value="revenue">Revenue</option>
+              <option value="profit">Profit</option>
+              <option value="units">Units</option>
+            </select>
+          </div>
+          <canvas id="trendChart" height="260"></canvas>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Breakdown</span>
+              <h2>Category Share</h2>
+            </div>
+          </div>
+          <canvas id="categoryChart" height="260"></canvas>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Ranking</span>
+              <h2>Top Regions</h2>
+            </div>
+          </div>
+          <canvas id="regionChart" height="260"></canvas>
+        </article>
+
+        <article id="forecast" class="panel">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Forecast</span>
+              <h2>Next Period Estimate</h2>
+            </div>
+          </div>
+          <div class="forecast-box">
+            <strong id="forecastValue">$0</strong>
+            <span id="forecastText">Based on recent revenue movement.</span>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <span class="eyebrow">Pivot</span>
+              <h2>Category x Region</h2>
+            </div>
+          </div>
+          <div id="pivotTable" class="pivot-table"></div>
+        </article>
+      </section>
+
+      <section id="data" class="panel table-panel">
+        <div class="panel-header">
+          <div>
+            <span class="eyebrow">Records</span>
+            <h2>Filtered Dataset</h2>
+          </div>
+          <span id="recordCount" class="record-count">0 rows</span>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-sort="date">Date</th>
+                <th data-sort="region">Region</th>
+                <th data-sort="category">Category</th>
+                <th data-sort="product">Product</th>
+                <th data-sort="units">Units</th>
+                <th data-sort="revenue">Revenue</th>
+                <th data-sort="profit">Profit</th>
+              </tr>
+            </thead>
+            <tbody id="dataBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
